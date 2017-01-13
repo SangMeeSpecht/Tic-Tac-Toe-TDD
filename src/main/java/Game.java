@@ -3,16 +3,15 @@
  */
 public class Game {
     Board board;
-    GamePrompter gamePrompter;
 
-    public Game(Board board, GamePrompter gamePrompter) {
+    public Game(Board board) {
         this.board = board;
-        this.gamePrompter = gamePrompter;
     }
 
 
-    public void start() {
+    public void run() {
         board.displayBoard();
-        gamePrompter.displayNumberPrompt();
+        board.makeMove();
+//        board.displayBoard();
     }
 }
