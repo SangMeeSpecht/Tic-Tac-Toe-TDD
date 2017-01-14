@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.HashMap;
 
@@ -33,18 +34,30 @@ public class Board {
     }
 
     public void makeMove() {
-
+        displayNumberPrompt();
+        String userPosition = readUserBoardPosition();
+        updateBoard(userPosition);
+        displayBoard();
     }
 
-//    private String readUserBoardPosition() {
-//
-//    }
+    private String readUserBoardPosition() {
+        String position = "";
+        try {
+            position = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return position;
+    }
+
 
     private void displayNumberPrompt() {
         printStream.println("Please pick a number to make a move.\n");
     }
 
-    private void updateBoard() {
+    private void updateBoard(String userPosition) {
+        Integer position = Integer.parseInt(userPosition);
+        board.put(position, userPosition);
     }
 
 
