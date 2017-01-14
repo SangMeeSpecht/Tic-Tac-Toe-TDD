@@ -13,6 +13,7 @@ public class Board {
 
     public Board(PrintStream printStream, BufferedReader bufferedReader) {
         this.printStream = printStream;
+        this.bufferedReader = bufferedReader;
         board = createFirstBoard();
     }
 
@@ -57,7 +58,7 @@ public class Board {
 
     private void updateBoard(String userPosition) {
         Integer position = Integer.parseInt(userPosition);
-        board.put(position, userPosition);
+        board.put(position, "X");
     }
 
 

@@ -36,13 +36,11 @@ public class BoardTest {
         verify(printStream).println("1|2|3\n-----\n4|5|6\n-----\n7|8|9\n");
     }
 
-//    not passing right now
     @Test
     public void shouldDisplayUpdatedBoardPositionWhenUserChoosesNumber() throws IOException {
         when(bufferedReader.readLine()).thenReturn("5");
         board.makeMove();
 
         verify(printStream).println("1|2|3\n-----\n4|X|6\n-----\n7|8|9\n");
-
     }
 }
