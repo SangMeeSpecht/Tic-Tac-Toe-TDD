@@ -26,3 +26,4 @@ public class Main {
 //Questions
 //Do you use dependency injection for Exceptions?
 //Good way to test exceptions?
+//Are you suppose to test Exception class?

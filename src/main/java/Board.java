@@ -35,6 +35,12 @@ public class Board {
         board.put(userPosition, playerSymbol);
     }
 
+    public void checkForPositionVacancy(String position) throws InputException {
+        if(board.get(position) == "X" || board.get(position) == "O") {
+            throw new InputException(printStream);
+        }
+    }
+
     private HashMap<String, String> generateInitialBoard() {
         HashMap<String, String> firstBoard = new HashMap<String, String>();
         firstBoard.put("1", "1");
@@ -48,11 +54,5 @@ public class Board {
         firstBoard.put("9", "9");
 
         return firstBoard;
-    }
-
-    public void checkForPositionVacancy(String position) throws InputException {
-        if(board.get(position) == "X" || board.get(position) == "O") {
-            throw new InputException(printStream);
-        }
     }
 }

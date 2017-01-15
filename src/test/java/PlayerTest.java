@@ -23,12 +23,19 @@ public class PlayerTest {
         bufferedReader = mock(BufferedReader.class);
         printStream = mock(PrintStream.class);
         board = mock(Board.class);
-        inputException = new InputException(printStream);
-        player = new Player(printStream, bufferedReader, board, "X", inputException);
+        player = new Player(printStream, bufferedReader, board, "X");
     }
 
     @Test
-    public void shouldUpdateTheBoardWhenThePlayerMakesAMove() throws IOException {
+    public void shouldPromptThePlayerToChooseAPosition() throws IOException {
+        player.makeMove();
+
+        verify(printStream).println("Please pick a number to make a move.\n");
+
+    }
+
+    @Test
+    public void shouldUpdateTheBoardWhenThePlayerMakesAMoveOnAValidPosition() throws IOException {
         when(bufferedReader.readLine()).thenReturn("5");
 
         player.makeMove();
@@ -37,7 +44,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void shouldDisplayTheBoardWhenThePlayerMakesAMove() throws IOException {
+    public void shouldDisplayTheBoardWhenThePlayerMakesAMoveOnAValidPosition() throws IOException {
         when(bufferedReader.readLine()).thenReturn("5");
 
         player.makeMove();
@@ -45,11 +52,12 @@ public class PlayerTest {
         verify(board).displayBoard();
     }
 
-    @Test(expected = InputException.class)
-    public void shouldDisplayErrorMessageWhenPositionIsAlreadyTaken() {
-        doThrow(inputException).when(player).makeMove();
+    @Test
+    public void shouldCheckTheBoardForPositionVacancy() throws InputException, IOException {
+        when(bufferedReader.readLine()).thenReturn("5");
 
         player.makeMove();
-    }
 
+        verify(board).checkForPositionVacancy("5");
+    }
 }

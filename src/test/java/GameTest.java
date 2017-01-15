@@ -33,17 +33,11 @@ public class GameTest {
         verify(board).displayBoard();
     }
 
+//    not specific enough???
     @Test
-    public void shouldMakeTheFirstPlayerMove() {
+    public void shouldMoveAPlayerWhenGameStarts() {
         game.run();
 
-        verify(player).makeMove();
+        verify(player, atLeastOnce()).makeMove();
     }
-
-//    @Test
-//    public void shouldMakeTheSecondPlayerMove() {
-//        game.run();
-//
-//        verify(player, times(2)).makeMove();
-//    }
 }
