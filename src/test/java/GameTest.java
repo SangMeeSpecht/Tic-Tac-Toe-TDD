@@ -3,9 +3,7 @@ import org.junit.Test;
 
 import java.util.HashMap;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /**
  * Created by sspecht on 1/13/17.
@@ -23,23 +21,29 @@ public class GameTest {
         players = mock(HashMap.class);
         player = mock(Player.class);
         game = new Game(board, players);
+
+        when(players.get("playerX")).thenReturn(player);
+        when(players.get("playerO")).thenReturn(player);
     }
 
     @Test
     public void shouldDisplayBoardWhenGameStarts() {
-        when(players.get("playerX")).thenReturn(player);
-
         game.run();
 
         verify(board).displayBoard();
     }
 
     @Test
-    public void shouldMakeAPlayerMove() {
-        when(players.get("playerX")).thenReturn(player);
-
+    public void shouldMakeTheFirstPlayerMove() {
         game.run();
 
         verify(player).makeMove();
     }
+
+//    @Test
+//    public void shouldMakeTheSecondPlayerMove() {
+//        game.run();
+//
+//        verify(player, times(2)).makeMove();
+//    }
 }

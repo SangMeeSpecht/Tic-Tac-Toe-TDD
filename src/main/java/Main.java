@@ -15,6 +15,7 @@ public class Main {
 
         HashMap<String, Player> players = new HashMap<String, Player>();
         players.put("playerX", new Player(printStream, bufferedReader, board, "X"));
+        players.put("playerO", new Player(printStream, bufferedReader, board, "O"));
         Game game = new Game(board, players);
 
         game.run();

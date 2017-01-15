@@ -16,5 +16,6 @@ public class Game {
     public void run() {
         board.displayBoard();
         players.get("playerX").makeMove();
+        players.get("playerO").makeMove();
     }
 }
