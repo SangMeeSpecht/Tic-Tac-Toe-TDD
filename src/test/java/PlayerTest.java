@@ -5,9 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /**
  * Created by sspecht on 1/14/17.
@@ -18,14 +16,15 @@ public class PlayerTest {
     private PrintStream printStream;
     private BufferedReader bufferedReader;
     private Board board;
-
+    private InputException inputException;
 
     @Before
     public void setup() {
         bufferedReader = mock(BufferedReader.class);
         printStream = mock(PrintStream.class);
         board = mock(Board.class);
-        player = new Player(printStream, bufferedReader, board, "X");
+        inputException = new InputException(printStream);
+        player = new Player(printStream, bufferedReader, board, "X", inputException);
     }
 
     @Test
@@ -45,4 +44,12 @@ public class PlayerTest {
 
         verify(board).displayBoard();
     }
+
+    @Test(expected = InputException.class)
+    public void shouldDisplayErrorMessageWhenPositionIsAlreadyTaken() {
+        doThrow(inputException).when(player).makeMove();
+
+        player.makeMove();
+    }
+
 }

@@ -4,6 +4,8 @@ import org.junit.Test;
 import java.io.IOException;
 import java.io.PrintStream;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -35,4 +37,20 @@ public class BoardTest {
 
         verify(printStream).println("1|2|3\n-----\n4|X|6\n-----\n7|8|9\n");
     }
+
+//    @Test
+//    public void shouldCheckIfALocationIsTakenWhenItIsNotTaken() {
+//        Boolean positionTaken = board.locationTaken("5");
+//
+//        assertThat(positionTaken, is(false));
+//    }
+//
+//    @Test
+//    public void shouldCheckIfALocationIsTakenWhenItIsTaken() {
+//        board.updateBoard("5", "X");
+//
+//        Boolean positionTaken = board.locationTaken("5");
+//
+//        assertThat(positionTaken, is(true));
+//    }
 }

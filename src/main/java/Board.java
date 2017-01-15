@@ -11,7 +11,7 @@ public class Board {
 
     public Board(PrintStream printStream) {
         this.printStream = printStream;
-        board = createFirstBoard();
+        board = generateInitialBoard();
     }
 
     public void displayBoard() {
@@ -35,7 +35,7 @@ public class Board {
         board.put(userPosition, playerSymbol);
     }
 
-    private HashMap<String, String> createFirstBoard() {
+    private HashMap<String, String> generateInitialBoard() {
         HashMap<String, String> firstBoard = new HashMap<String, String>();
         firstBoard.put("1", "1");
         firstBoard.put("2", "2");
@@ -48,5 +48,11 @@ public class Board {
         firstBoard.put("9", "9");
 
         return firstBoard;
+    }
+
+    public void checkForPositionVacancy(String position) throws InputException {
+        if(board.get(position) == "X" || board.get(position) == "O") {
+            throw new InputException(printStream);
+        }
     }
 }

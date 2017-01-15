@@ -20,10 +20,25 @@ public class Player {
     }
 
     public void makeMove() {
+        Boolean moveUnsuccessful = true;
+
+        while(moveUnsuccessful) {
+            try {
+                attemptToUpdateBoard();
+                break;
+            } catch (InputException e) {
+                e.displayLocationTaken();
+            }
+        }
+
+        board.displayBoard();
+    }
+
+    private void attemptToUpdateBoard() throws InputException {
         displayNumberPrompt();
         String userInput = readUserInput();
+        board.checkForPositionVacancy(userInput);
         board.updateBoard(userInput, symbol);
-        board.displayBoard();
     }
 
     private String readUserInput() {
